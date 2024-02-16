@@ -1,0 +1,35 @@
+<app-menu></app-menu>
+        <!-- <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+            <li class="w-100">
+                <a [routerLink]="'/tarjeta'" class="nav-link px-0"> <span class="d-none d-sm-inline">Tarjeta</span> </a>
+            </li>
+            <li>
+                <a [routerLink]="'/usuarios'" class="nav-link px-0"> <span class="d-none d-sm-inline">Usuarios</span> </a>
+            </li>
+        </ul> -->
+      <br class="separador-menu" />
+      <div class="col py-3">
+        <router-outlet></router-outlet>
+      </div>
+<!--
+  <ul class="nav navbar-nav navbar-right" *ngIf="login != null">
+    <li class="nav-item" *ngIf="login.nombre=='error'">
+      <a class="nav-link" [routerLink]="'/login'">Login</a>
+    </li>
+    <li class="nav-item" *ngIf="login.nombre=='error'">
+      <a class="nav-link" [routerLink]="'/registro'">Registrar</a>
+    </li>
+    <li class="nav-item" *ngIf="login.nombre!='error'">
+      <a class="nav-link" (click)="logout()">Logout</a>
+    </li>
+</ul>
+<ul class="nav navbar-nav navbar-right" *ngIf="login == null">
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="'/login'">Login</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="'/registro'">Registrar</a>
+  </li>
+</ul>
+-->
+

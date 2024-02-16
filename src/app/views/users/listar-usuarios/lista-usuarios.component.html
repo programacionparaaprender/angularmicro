@@ -1,0 +1,21 @@
+<div class="right" *ngIf="usuarios">
+  <h3>Tareas:</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">nombre de usuario</th>
+        <th scope="col">email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <th scope="row">{{ usuario.userId }}</th>
+        <td> {{ usuario.username }} </td>
+        <td>{{ usuario.email }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</div>

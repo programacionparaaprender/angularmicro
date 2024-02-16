@@ -1,0 +1,130 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card card-default">
+                <div class="card-body">
+                    <h3 class="titulo">Tarjeta de credito</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="titulo">{{ accion | uppercase }} Tarjeta</h5>
+                    <form [formGroup]="form" (ngSubmit)="agregarTarjeta()">
+                        <input
+                            formControlName="tarjetaId" 
+                            type="hidden" 
+                            id="custId" 
+                            name="custId" 
+                            value="0">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <i class="fas fa-user" [class.green-icon]="this.form.get('titular')?.valid"
+                                        [class.red-icon]="this.form.get('titular')?.invalid && this.form.get('titular')?.touched"></i>
+                                    </span>
+                                    <input 
+                                        formControlName="titular"
+                                        type="text" 
+                                        class="form-control" 
+                                        id="idTitular" 
+                                        name="nTitular"
+                                        placeholder="Titular">                   
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <i class="fas fa-credit-card" [class.green-icon]="this.form.get('numeroTarjeta')?.valid"
+                                        [class.red-icon]="this.form.get('numeroTarjeta')?.invalid && this.form.get('numeroTarjeta')?.touched"></i>
+                                    </span>
+                                    <input 
+                                        formControlName="numeroTarjeta"
+                                        type="number" 
+                                        class="form-control" 
+                                        id="idNumeroTarjeta"
+                                        maxlength="16"
+                                        placeholder="Número de tarjeta">                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <i class="fas fa-key" [class.green-icon]="this.form.get('cvv')?.valid"
+                                        [class.red-icon]="this.form.get('cvv')?.invalid && this.form.get('cvv')?.touched"></i>
+                                    </span>
+                                    <input 
+                                        formControlName="cvv"
+                                        type="text" 
+                                        class="form-control" 
+                                        id="idCVV" 
+                                        name="nCVV"
+                                        maxlength="3"
+                                        placeholder="CVV">                 
+                                </div>
+                                
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <i class="fas fa-calendar-alt" [class.green-icon]="this.form.get('fechaExpiracion')?.valid"
+                                        [class.red-icon]="this.form.get('fechaExpiracion')?.invalid && this.form.get('fechaExpiracion')?.touched"></i>
+                                    </span>
+                                    <input 
+                                        formControlName="fechaExpiracion"
+                                        type="text" 
+                                        class="form-control" 
+                                        id="idFechaDeExpiracion"
+                                        maxlength="5"
+                                        placeholder="MM/AA">                  
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button 
+                                [disabled]="this.form.invalid"
+                                type="submit" 
+                                class="btn btn-primary">
+                                <i class="fas fa-database"></i>
+                                &nbsp;
+                                Aceptar
+                            </button>
+                            <button type="reset" class="btn btn-danger">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="titulo">Listado de Tarjetas</h5>
+                    <table class="table">
+                        <tbody>
+                            <tr *ngFor="let tarjeta of listTarjetas">
+                                <td>{{tarjeta.titular}}</td>
+                                <td>{{tarjeta.numeroTarjeta}}</td>
+                                <td>{{tarjeta.fechaExpiracion}}</td>
+                                <td>{{tarjeta.cvv}}</td>
+                                <td><i (click)="editarTarjeta(tarjeta)" class="far  fa-edit text-info"></i></td>
+                                <td><i (click)="eliminarTarjeta(tarjeta)" class="far  fa-trash-alt text-danger"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-7">
+
+        </div>
+    </div>
+</div>

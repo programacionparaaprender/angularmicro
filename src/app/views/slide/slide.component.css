@@ -1,0 +1,24 @@
+.fondo-slide {
+    background-color: rgb(33, 37, 41);
+    height: 100%;
+}
+.separadorSlide {
+    width: 100%;
+    height: 4rem;
+}
+
+.titulo-slide {
+    color: white;
+    font-size: 15pt;
+}
+
+.item-demenu{
+    width: 5rem;
+    font-size: 10pt;
+    font-weight: bold;
+    padding: 1rem;
+    color:white;
+}
+.item-demenu:hover{
+    opacity: 0.5;
+}
