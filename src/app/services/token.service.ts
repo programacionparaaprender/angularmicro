@@ -55,29 +55,29 @@ export class TokenService {
     };
     //this.httpClient.post(url , body, {headers: headers});   
     response = await axios.post(this.myApiUrl + '/token', { headers: headers, params: body});
-        if(response != null){
-            console.log('response: '+ JSON.stringify(response));
-            this.setUser(response.data);
-            token = response.data.token;
-            window.localStorage.removeItem('token');
-            window.localStorage.setItem('token', token);   
-            console.log("token: " + window.localStorage.getItem('token')); 
-        }
+    if(response != null){
+        console.log('response: '+ JSON.stringify(response));
+        this.setUser(response);
+        token = response.access_token;
+        window.localStorage.removeItem('token');
+        window.localStorage.setItem('token', token);   
+        console.log("token: " + window.localStorage.getItem('token')); 
+    }
     }catch(e){
         console.log(e);
     }
     return response;
   } 
 
-  setUser(user: Usertoken):void   {
+  setUser(user: Responseusertoken):void   {
     localStorage.setItem('login', JSON.stringify(user));
   }
 
-  getUser():Usertoken | null  {
+  getUser():Responseusertoken | null  {
     let user: Usertoken;
     let cadena: string | null = localStorage.getItem('login');
     if(cadena != null){
-      const user: Usertoken = JSON.parse(cadena);
+      const user: Responseusertoken = JSON.parse(cadena);
       return user;
     }
     return null;
