@@ -41,11 +41,20 @@ export class TokenService {
   async login(user: TioDto) {
     var token:string = "";
     var response:Responseusertoken | null = null;
-    try{
-        
-        ///response = await this.httpClient.post<Usertoken>(this.myApiUrl + 'token', user).toPromise();
-        console.log(JSON.stringify(user));
-        response = await axios.post(this.myApiUrl + '/token', user);
+    try{    
+    ///response = await this.httpClient.post<Usertoken>(this.myApiUrl + 'token', user).toPromise();
+    console.log(JSON.stringify(user));
+    const headers = {
+      'Authorization':'Basic frontendapp:12345',
+      'Content-Type':'application/x-www-form-urlencoded'
+    }
+    const body = {
+      'username': user.username,
+      'password': user.password,
+      'grant_type': 'password'
+    };
+    //this.httpClient.post(url , body, {headers: headers});   
+    response = await axios.post(this.myApiUrl + '/token', { headers: headers, params: body});
         if(response != null){
             console.log('response: '+ JSON.stringify(response));
             this.setUser(response.data);

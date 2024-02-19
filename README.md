@@ -4,6 +4,13 @@ https://udemy.com/course/sonarqube
 ### página de scanner
 https://docs.sonarqube.org/latest/analyzing-source-code/scanners/sonarscanner/
 
+
+### header axios
+>- https://blog.logrocket.com/using-axios-set-request-headers/
+
+### params axios
+>- https://stackoverflow.com/questions/53501185/how-to-post-query-parameters-with-axios
+
 ### primero  
 cd refugio 
 luego ejecutar comandos
