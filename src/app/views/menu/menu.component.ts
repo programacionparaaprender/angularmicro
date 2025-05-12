@@ -12,6 +12,7 @@ import { TokenService } from 'src/app/services/token.service';
 import { Usertoken } from 'src/app/models/usertoken';
 import { MenuService } from 'src/app/services/menu.service';
 import { ResponseMenu } from 'src/app/models/responsemenu';
+import { Responseusertoken } from 'src/app/models/responseusertoken';
 
 
 @Component({
@@ -84,10 +85,16 @@ export class MenuComponent implements OnInit {
   }
 
   async logout() {
-    const usuario: Usertoken = {
-      token: "",
-      tokenValidityInHours: 0,
-      tokenValidityInDays: 0
+    const usuario: Responseusertoken = {
+      access_token: "",
+      token_type: "",
+      refresh_token: "",
+      expires_in: 0,
+      scope: "",
+      apellido: "",
+      correo: "",
+      nombre: "",
+      jti: ""
     };
     this.usuariologeado = false;
     //this.store.dispatch(new TaskActions.InicioUsuario(usuario) )

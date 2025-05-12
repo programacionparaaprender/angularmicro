@@ -61,14 +61,8 @@ export class RegistrarUsuariosComponent implements OnInit {
         //var response = await this.tioService.registrar(this.tio);
         var responseusertoken: Responseusertoken | undefined | null = await this.tokenService.registrar(this.tio);
         if(responseusertoken){
-          var data = responseusertoken.data;
-          const usertoken: Usertoken = {
-            token: data.token,
-            tokenValidityInHours: data.tokenValidityInHours,
-            tokenValidityInDays: data.tokenValidityInDays
-          };
-          this.tokenService.setUser(usertoken);
-          this.tokenService.setToken(usertoken.token);
+          this.tokenService.setUser(responseusertoken);
+          this.tokenService.setToken(responseusertoken.access_token);
           await this.menuService.setMenus();
           this.router.navigate(['/tarjeta']);
         }else{

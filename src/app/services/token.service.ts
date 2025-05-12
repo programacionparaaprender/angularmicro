@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Tio } from 'src/app/commons/models/tio';
 import axios from "axios";
@@ -14,6 +14,7 @@ import { RegistroDto } from '../commons/dto/registroDto';
   providedIn: 'root'
 })
 export class TokenService {
+  myOauthUrl = "http://localhost:8090/api/security/oauth";
   myApiUrl = "http://localhost:8080/api/auth";
   myApiUsuario = "http://localhost:8080/api/user/";
   KEYTOKEN = "KEYTOKEN";
@@ -40,10 +41,13 @@ export class TokenService {
 
   async login(user: TioDto) {
     var token:string = "";
-    var response:Responseusertoken | null = null;
+    var response:Responseusertoken | null | undefined | any = null;
+
     try{    
     ///response = await this.httpClient.post<Usertoken>(this.myApiUrl + 'token', user).toPromise();
     console.log(JSON.stringify(user));
+    
+    /*
     const headers = {
       'Authorization':'Basic frontendapp:12345',
       'Content-Type':'application/x-www-form-urlencoded'
@@ -53,8 +57,7 @@ export class TokenService {
       'password': user.password,
       'grant_type': 'password'
     };
-    //this.httpClient.post(url , body, {headers: headers});   
-    response = await axios.post(this.myApiUrl + '/token', { headers: headers, params: body});
+    response = await axios.post(this.myOauthUrl + '/token', { headers: headers, params: body});
     if(response != null){
         console.log('response: '+ JSON.stringify(response));
         this.setUser(response);
@@ -63,6 +66,31 @@ export class TokenService {
         window.localStorage.setItem('token', token);   
         console.log("token: " + window.localStorage.getItem('token')); 
     }
+    */
+
+    const headers = new HttpHeaders(
+      {
+        //'Authorization':'Basic frontendapp:12345',
+        'Authorization':'Basic ZnJvbnRlbmRhcHA6MTIzNDU=',
+        'Content-Type':'application/x-www-form-urlencoded'
+      }
+    );
+
+    const body = new HttpParams()
+    .set('username', user.username)
+    .set('password', user.password)
+    .set('grant_type','password');
+      response = await this.httpClient.post(this.myOauthUrl + '/token' , body, {headers: headers}).toPromise();
+    if(response != null){
+      console.log('response: '+ JSON.stringify(response));
+      this.setUser(response);
+      token = response.access_token;
+      window.localStorage.removeItem('token');
+      window.localStorage.setItem('token', token);   
+      console.log("token: " + window.localStorage.getItem('token')); 
+    }
+
+
     }catch(e){
         console.log(e);
     }
